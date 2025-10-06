@@ -1,0 +1,30 @@
+{
+  "name": "monochrome-flow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zirpo/monochrome-flow.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/zirpo/monochrome-flow/issues"
+  },
+  "homepage": "https://github.com/zirpo/monochrome-flow#readme",
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "luxon": "^3.7.2"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.4"
+  }
+}

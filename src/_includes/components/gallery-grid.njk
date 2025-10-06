@@ -1,0 +1,10 @@
+<div class="gallery-grid">
+    {% for portrait in collections.portraits %}
+    <div class="gallery-item">
+        <a href="{{ portrait.url }}">
+            <img src="/portraits/{{ portrait.fileSlug }}.jpg" alt="{{ portrait.data.title }}">
+            <h3>{{ portrait.data.title }}</h3>
+        </a>
+    </div>
+    {% endfor %}
+</div>

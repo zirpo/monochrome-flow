@@ -1,0 +1,176 @@
+<h1>Monochrome Flow - Project Setup</h1>
+<h2>Directory Structure</h2>
+<pre><code>monochrome-flow/
+├── .eleventy.js              # Eleventy config
+├── package.json              # Dependencies
+├── .gitignore
+├── netlify.toml              # Netlify config
+├── src/
+│   ├── _data/
+│   │   └── site.json         # Site metadata
+│   ├── _includes/
+│   │   ├── layouts/
+│   │   │   ├── base.njk      # Base HTML template
+│   │   │   └── portrait.njk  # Individual portrait page
+│   │   └── components/
+│   │       ├── header.njk
+│   │       ├── footer.njk
+│   │       └── gallery-grid.njk
+│   ├── portraits/            # ⭐ YOUR PHOTOS GO HERE
+│   │   ├── portrait-01.md
+│   │   ├── portrait-01.jpg
+│   │   ├── portrait-02.md
+│   │   ├── portrait-02.jpg
+│   │   └── ...
+│   ├── assets/
+│   │   ├── css/
+│   │   │   └── style.css
+│   │   └── js/
+│   │       └── gallery.js
+│   └── index.njk             # Homepage/gallery
+└── _site/                    # Generated output (ignored)
+</code></pre>
+<h2>How to Use</h2>
+<h3>Adding a New Portrait</h3>
+<ol>
+<li>
+<p><strong>Add your photo</strong> to <code>src/portraits/</code>:</p>
+<ul>
+<li>Example: <code>urban-solitude.jpg</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Create a matching markdown file</strong> with the same name:</p>
+<ul>
+<li>Example: <code>urban-solitude.md</code></li>
+</ul>
+</li>
+<li>
+<p><strong>Fill in the metadata</strong>:</p>
+</li>
+</ol>
+<pre><code class="language-markdown">---
+title: Urban Solitude
+date: 2024-03-15
+mood: 
+  - contemplative
+  - urban
+  - minimal
+recipe: Classic Chrome +2
+camera: Fuji X-T4
+lens: XF 56mm f/1.2
+aperture: f/2.0
+shutter: 1/250s
+iso: 400
+featured: true
+---
+
+Optional description or story about this photograph...
+</code></pre>
+<p>That's it! The site will automatically pick up the image and metadata.</p>
+<h2>Setup Instructions</h2>
+<h3>1. Initialize Project</h3>
+<pre><code class="language-bash"># Clone your repo
+git clone https://github.com/yourusername/monochrome-flow.git
+cd monochrome-flow
+
+# Install dependencies
+npm install
+</code></pre>
+<h3>2. Development</h3>
+<pre><code class="language-bash"># Run local dev server
+npm run dev
+
+# Visit http://localhost:8080
+</code></pre>
+<h3>3. Deploy to Netlify</h3>
+<ul>
+<li>Connect your GitHub repo to Netlify</li>
+<li>Build command: <code>npm run build</code></li>
+<li>Publish directory: <code>_site</code></li>
+<li>Auto-deploys on every push to main branch</li>
+</ul>
+<h2>Metadata Fields</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>Yes</td>
+<td>Portrait title</td>
+</tr>
+<tr>
+<td><code>date</code></td>
+<td>Yes</td>
+<td>Shooting date (YYYY-MM-DD)</td>
+</tr>
+<tr>
+<td><code>mood</code></td>
+<td>No</td>
+<td>Array of mood tags</td>
+</tr>
+<tr>
+<td><code>recipe</code></td>
+<td>No</td>
+<td>Film simulation recipe</td>
+</tr>
+<tr>
+<td><code>camera</code></td>
+<td>No</td>
+<td>Camera body</td>
+</tr>
+<tr>
+<td><code>lens</code></td>
+<td>No</td>
+<td>Lens used</td>
+</tr>
+<tr>
+<td><code>aperture</code></td>
+<td>No</td>
+<td>f-stop</td>
+</tr>
+<tr>
+<td><code>shutter</code></td>
+<td>No</td>
+<td>Shutter speed</td>
+</tr>
+<tr>
+<td><code>iso</code></td>
+<td>No</td>
+<td>ISO value</td>
+</tr>
+<tr>
+<td><code>featured</code></td>
+<td>No</td>
+<td>Show on homepage (true/false)</td>
+</tr>
+</tbody>
+</table>
+<h2>Image Recommendations</h2>
+<ul>
+<li><strong>Format</strong>: JPG (JPEG)</li>
+<li><strong>Color</strong>: Already converted to B&amp;W</li>
+<li><strong>Size</strong>: 2400px on long edge (resized from X-T4 originals)</li>
+<li><strong>Orientation</strong>: Portrait (3:4 ratio works best)</li>
+<li><strong>File size</strong>: Under 2MB per image</li>
+</ul>
+<h2>Customization</h2>
+<ul>
+<li><strong>Colors</strong>: Edit <code>src/assets/css/style.css</code></li>
+<li><strong>Layout</strong>: Modify templates in <code>src/_includes/</code></li>
+<li><strong>Site info</strong>: Update <code>src/_data/site.json</code></li>
+</ul>
+<h2>Next Steps</h2>
+<ol>
+<li>Copy the configuration files (next artifacts)</li>
+<li>Run <code>npm install</code></li>
+<li>Add your first portrait + markdown file</li>
+<li>Test locally with <code>npm run dev</code></li>
+<li>Push to GitHub and deploy via Netlify</li>
+</ol>

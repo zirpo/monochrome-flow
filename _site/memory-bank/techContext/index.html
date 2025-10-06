@@ -1,0 +1,33 @@
+<h1>Technical Context: Monochrome Flow</h1>
+<h2>Technologies Used</h2>
+<ul>
+<li><strong>Static Site Generator</strong>: Eleventy (11ty)</li>
+<li><strong>Templating Language</strong>: Nunjucks</li>
+<li><strong>Content Format</strong>: Markdown with YAML Front Matter</li>
+<li><strong>Styling</strong>: CSS</li>
+<li><strong>Scripting</strong>: JavaScript (for <code>gallery.js</code>)</li>
+<li><strong>Package Management</strong>: npm (Node Package Manager)</li>
+<li><strong>Version Control</strong>: Git</li>
+<li><strong>Deployment</strong>: Netlify</li>
+</ul>
+<h2>Development Setup</h2>
+<ol>
+<li><strong>Node.js</strong>: Required to run Eleventy and npm.</li>
+<li><strong>npm</strong>: Used to install project dependencies (e.g., Eleventy itself).</li>
+<li><strong>Git</strong>: For cloning the repository and managing version control.</li>
+</ol>
+<h2>Technical Constraints</h2>
+<ul>
+<li><strong>Static Output</strong>: The project generates static HTML, CSS, and JavaScript files. Dynamic server-side logic is not supported directly within the Eleventy build.</li>
+<li><strong>Markdown for Content</strong>: Portrait content and metadata must adhere to the Markdown with YAML front matter format for Eleventy to process it correctly.</li>
+<li><strong>Image Format</strong>: Images are expected to be JPG and pre-converted to black and white. Recommended size is 2400px on the long edge.</li>
+</ul>
+<h2>Dependencies</h2>
+<p>The primary dependency is Eleventy, managed via <code>package.json</code>. Other dependencies would typically be development tools or plugins for Eleventy.</p>
+<h2>Tool Usage Patterns</h2>
+<ul>
+<li><strong><code>npm install</code></strong>: To set up the project by installing all required Node.js packages.</li>
+<li><strong><code>npm run dev</code></strong>: To start a local development server with live reloading, facilitating rapid development and previewing changes.</li>
+<li><strong><code>npm run build</code></strong>: To compile the static site for deployment, generating the <code>_site</code> directory.</li>
+<li><strong>Git Commands</strong>: Standard <code>git clone</code>, <code>git add</code>, <code>git commit</code>, <code>git push</code> for version control and deployment triggering.</li>
+</ul>
