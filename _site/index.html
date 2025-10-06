@@ -16,18 +16,11 @@
 
     <main>
         
-<h1>Welcome to Monochrome Flow</h1>
+<pre></pre>
 
-<div class="gallery-grid">
-    
-    <div class="gallery-item">
-        <a href="/portraits/DSCF1503/">
-            <img src="/portraits/DSCF1503.jpg" alt="DSCF1503">
-            <h3>DSCF1503</h3>
-        </a>
-    </div>
-    
-</div>
+<ul class="grid grid-cols-2 md:grid-cols-3 gap-4">
+  
+</ul>
 
 
     </main>
@@ -36,5 +29,91 @@
         <p class="text-sm text-center">© 2025 zirpo</p>
 
     </footer>
+    
+    <div id="lightbox" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-80 backdrop-blur-sm">
+      <div class="relative max-w-5xl max-h-[90vh] w-full p-4">
+        <button id="lightbox-close" class="absolute -top-2 -right-2 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white text-black hover:bg-gray-200">×</button>
+        <img id="lightbox-image" src="" alt="" class="mx-auto h-full w-full object-contain">
+        <p id="lightbox-caption" class="mt-2 text-center text-white"></p>
+        <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white bg-opacity-50 p-2 text-black hover:bg-opacity-75"><</button>
+        <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white bg-opacity-50 p-2 text-black hover:bg-opacity-75">></button>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const closeButton = document.getElementById('lightbox-close');
+        const prevButton = document.getElementById('lightbox-prev');
+        const nextButton = document.getElementById('lightbox-next');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        let currentIndex = 0;
+
+        function showLightbox(index) {
+          const item = galleryItems[index];
+          if (!item) return;
+
+          const fullImageUrl = item.getAttribute('href');
+          const title = item.getAttribute('data-title');
+
+          lightboxImage.setAttribute('src', fullImageUrl);
+          lightboxImage.setAttribute('alt', title);
+          lightboxCaption.textContent = title;
+          lightbox.classList.remove('hidden');
+          lightbox.classList.add('flex');
+          currentIndex = index;
+          document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function hideLightbox() {
+          lightbox.classList.add('hidden');
+          lightbox.classList.remove('flex');
+          document.body.style.overflow = 'auto';
+        }
+
+        function showNext() {
+          const nextIndex = (currentIndex + 1) % galleryItems.length;
+          showLightbox(nextIndex);
+        }
+
+        function showPrev() {
+          const prevIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+          showLightbox(prevIndex);
+        }
+
+        galleryItems.forEach((item, index) => {
+          item.addEventListener('click', (e) => {
+            e.preventDefault();
+            showLightbox(index);
+          });
+        });
+
+        closeButton.addEventListener('click', hideLightbox);
+        nextButton.addEventListener('click', showNext);
+        prevButton.addEventListener('click', showPrev);
+
+        // Close on clicking the background overlay
+        lightbox.addEventListener('click', (e) => {
+          if (e.target === lightbox) {
+            hideLightbox();
+          }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+          if (lightbox.classList.contains('flex')) {
+            if (e.key === 'Escape') {
+              hideLightbox();
+            } else if (e.key === 'ArrowRight') {
+              showNext();
+            } else if (e.key === 'ArrowLeft') {
+              showPrev();
+            }
+          }
+        });
+      });
+    </script>
 </body>
 </html>
