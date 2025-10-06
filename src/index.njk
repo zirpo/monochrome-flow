@@ -3,6 +3,5 @@ layout: "layouts/base.njk"
 title: "Home"
 ---
 
-<h1>Welcome to Monochrome Flow</h1>
-
+{% set items = collections.portrait %}
 {% include "components/gallery-grid.njk" %}

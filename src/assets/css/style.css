@@ -99,3 +99,19 @@ footer {
     border-top: 1px solid #eee;
     background-color: #fff;
 }
+
+/* Lightbox Styles */
+#lightbox {
+  display: none; /* Initially hidden */
+  align-items: center;
+  justify-content: center;
+}
+
+#lightbox.flex {
+  display: flex;
+}
+
+#lightbox-close {
+  font-size: 2rem;
+  line-height: 1;
+}

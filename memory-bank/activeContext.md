@@ -2,7 +2,7 @@
 
 ## Current Work Focus
 
-The current focus is on implementing site rebranding and selective monochrome image processing as per Change Request ZIRPO-01.
+The current focus is on implementing the homepage cleanup and interactive lightbox gallery as per Change Request ZIRPO-02. We are currently debugging an issue where the `collections.portrait` data is not being populated, leading to an empty gallery on the homepage.
 
 ## Recent Changes
 
@@ -20,8 +20,10 @@ The current focus is on implementing site rebranding and selective monochrome im
 
 ## Next Steps
 
-1.  Continue adding more portraits and their corresponding markdown files.
-2.  Refine styling and add more advanced features as per project brief.
+1.  Diagnose and fix the empty `collections.portrait` issue.
+2.  Once the gallery is visible, verify the lightbox functionality.
+3.  Continue adding more portraits and their corresponding markdown files.
+4.  Refine styling and add more advanced features as per project brief.
 
 ## Active Decisions and Considerations
 
@@ -31,6 +33,7 @@ The current focus is on implementing site rebranding and selective monochrome im
 
 ## Learnings and Project Insights
 
+*   **Identified Problem**: The `collections.portrait` is currently empty, preventing the gallery from rendering. This needs to be resolved before proceeding with the lightbox functionality.
 *   Eleventy's flexibility with custom filters and collections is powerful for content-driven sites.
 *   Careful attention to file paths and Eleventy's build process is essential for correct asset and content rendering.
 *   It's important to ensure that image processing steps (e.g., grayscale conversion) are handled consistently and at the correct stage (e.g., within Eleventy's image shortcode rather than an initial processing script) to allow for conditional behavior.

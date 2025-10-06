@@ -2,7 +2,7 @@
 
 ## Current Status
 
-The Eleventy project has been successfully updated to implement site rebranding and selective monochrome image processing as per Change Request ZIRPO-01. All changes have been verified.
+The Eleventy project is currently undergoing implementation of Change Request ZIRPO-02 (Homepage Cleanup and Interactive Lightbox Gallery). A critical issue has been identified where the `collections.portrait` data is not being populated, leading to an empty gallery on the homepage. Debugging is in progress.
 
 ## What Works
 
@@ -17,12 +17,15 @@ The Eleventy project has been successfully updated to implement site rebranding 
 
 ## What's Left to Build / Next Milestones
 
-1.  Continue adding more portraits and their corresponding markdown files.
-2.  Refine styling and add more advanced features as per project brief.
-3.  **Deployment**: Prepare the project for continuous deployment to Netlify.
+1.  **Fix Empty Gallery**: Resolve the issue with `collections.portrait` being empty.
+2.  Verify lightbox functionality once the gallery is visible.
+3.  Continue adding more portraits and their corresponding markdown files.
+4.  Refine styling and add more advanced features as per project brief.
+5.  **Deployment**: Prepare the project for continuous deployment to Netlify.
 
 ## Known Issues
 
+*   **Critical**: `collections.portrait` is empty, causing the gallery to not render on the homepage.
 *   Minor console error for `favicon.ico` (non-critical).
 
 ## Evolution of Project Decisions
