@@ -1,129 +1,135 @@
-# Project Paper – Monochrome Flow
+# Monochrome Flow - Project Setup
 
-## Project Name and Repository
+## Directory Structure
 
-* **Project Name:** Monochrome Flow
-* **GitHub Repository Name:** `monochrome-flow`
-
-The name emphasizes the continuous pipeline (flow) from camera to web, with a focus on black & white portraiture.
-
----
-
-## Vision
-
-A digital photography project centered on black & white portraits shot with the Fuji X‑T4. The website will serve as a curated gallery and recipe log, where styles are defined by mood. AI tools will support metadata enrichment, tagging, and curation over time. The pipeline aims to be automated, from local NAS storage to public web gallery.
-
----
-
-## Objectives
-
-1. Build a content pipeline from **Synology NAS → GitHub → Netlify/Eleventy site**.
-2. Automate photo upload and gallery updates with minimal manual work.
-3. Enable future AI-driven curation: tagging, style recognition, mood-based collections.
-4. Keep the system modular, reproducible, and open for extensions.
-
----
-
-## Technical Architecture
-
-### Core Components
-
-* **NAS (Synology):** Initial storage and watch folder for new photos.
-* **Automation Layer:** Script/cronjob or Docker container to detect new files, commit, and push to GitHub.
-* **GitHub:** Single source of truth. Holds Eleventy website and media assets.
-* **Netlify:** Deployment platform, triggered on GitHub push.
-* **Eleventy (11ty):** Static site generator for fast, flexible photo galleries.
-
-### Optional/Planned AI Components
-
-* **Metadata Generator:** Local AI (CLIP, ComfyUI, Flux, etc.) creates JSON sidecar files with tags, moods, recipes.
-* **Curator:** Reads metadata and creates dynamic collections in Eleventy.
-
-### Pipeline Flow
-
-1. **Capture:** Fuji X‑T4 → import to Synology NAS.
-2. **NAS Watcher:** Detect new files, run script.
-3. **Automation:** Add files to GitHub repo (with metadata if available).
-4. **Push:** Trigger Netlify build.
-5. **Publish:** Site updated automatically.
-
-```mermaid
-flowchart LR
-  A[Photo on X-T4] --> B[NAS Folder]
-  B --> C[Watcher Script]
-  C --> D[Git Commit + Push]
-  D --> E[GitHub Repo]
-  E --> F[Netlify Deploy]
-  F --> G[Gallery Website]
-  C --> H[AI Metadata Tagging]
-  H --> D
+```
+monochrome-flow/
+├── .eleventy.js              # Eleventy config
+├── package.json              # Dependencies
+├── .gitignore
+├── netlify.toml              # Netlify config
+├── src/
+│   ├── _data/
+│   │   └── site.json         # Site metadata
+│   ├── _includes/
+│   │   ├── layouts/
+│   │   │   ├── base.njk      # Base HTML template
+│   │   │   └── portrait.njk  # Individual portrait page
+│   │   └── components/
+│   │       ├── header.njk
+│   │       ├── footer.njk
+│   │       └── gallery-grid.njk
+│   ├── portraits/            # ⭐ YOUR PHOTOS GO HERE
+│   │   ├── portrait-01.md
+│   │   ├── portrait-01.jpg
+│   │   ├── portrait-02.md
+│   │   ├── portrait-02.jpg
+│   │   └── ...
+│   ├── assets/
+│   │   ├── css/
+│   │   │   └── style.css
+│   │   └── js/
+│   │       └── gallery.js
+│   └── index.njk             # Homepage/gallery
+└── _site/                    # Generated output (ignored)
 ```
 
+## How to Use
+
+### Adding a New Portrait
+
+1. **Add your photo** to `src/portraits/`:
+   - Example: `urban-solitude.jpg`
+
+2. **Create a matching markdown file** with the same name:
+   - Example: `urban-solitude.md`
+
+3. **Fill in the metadata**:
+
+```markdown
+---
+title: Urban Solitude
+date: 2024-03-15
+mood: 
+  - contemplative
+  - urban
+  - minimal
+recipe: Classic Chrome +2
+camera: Fuji X-T4
+lens: XF 56mm f/1.2
+aperture: f/2.0
+shutter: 1/250s
+iso: 400
+featured: true
 ---
 
-## Deliverables
+Optional description or story about this photograph...
+```
 
-* **MVP:**
+That's it! The site will automatically pick up the image and metadata.
 
-  * GitHub repo with Eleventy site scaffold
-  * Netlify deployment linked to repo
-  * Synology script for auto-commit/push
-  * Basic gallery with manual captions
+## Setup Instructions
 
-* **Future:**
+### 1. Initialize Project
 
-  * AI metadata sidecar integration
-  * Mood/style-based collections
-  * Search and filter features
+```bash
+# Clone your repo
+git clone https://github.com/yourusername/monochrome-flow.git
+cd monochrome-flow
 
----
+# Install dependencies
+npm install
+```
 
-## Workstreams
+### 2. Development
 
-1. **Infrastructure Setup**
+```bash
+# Run local dev server
+npm run dev
 
-   * Create GitHub repo
-   * Connect to Netlify
-   * Set up Eleventy base site
+# Visit http://localhost:8080
+```
 
-2. **NAS Integration**
+### 3. Deploy to Netlify
 
-   * Write watcher script (bash/python)
-   * Configure Synology Task Scheduler or Docker container
-   * Automate git commit & push
+- Connect your GitHub repo to Netlify
+- Build command: `npm run build`
+- Publish directory: `_site`
+- Auto-deploys on every push to main branch
 
-3. **Gallery Design**
+## Metadata Fields
 
-   * Choose minimal theme
-   * Create template for photo pages
-   * Add EXIF + caption support
+| Field | Required | Description |
+|-------|----------|-------------|
+| `title` | Yes | Portrait title |
+| `date` | Yes | Shooting date (YYYY-MM-DD) |
+| `mood` | No | Array of mood tags |
+| `recipe` | No | Film simulation recipe |
+| `camera` | No | Camera body |
+| `lens` | No | Lens used |
+| `aperture` | No | f-stop |
+| `shutter` | No | Shutter speed |
+| `iso` | No | ISO value |
+| `featured` | No | Show on homepage (true/false) |
 
-4. **AI Curation (Phase 2)**
+## Image Recommendations
 
-   * Experiment with local tagging models
-   * Define JSON schema for metadata
-   * Extend Eleventy to use metadata
+- **Format**: JPG (JPEG)
+- **Color**: Already converted to B&W
+- **Size**: 2400px on long edge (resized from X-T4 originals)
+- **Orientation**: Portrait (3:4 ratio works best)
+- **File size**: Under 2MB per image
 
----
+## Customization
 
-## Risks & Mitigations
-
-* **Large file sizes:** Mitigate via resizing/thumbnailing before upload.
-* **NAS offline:** Ensure queueing or retry logic in script.
-* **AI accuracy:** Start with manual overrides; keep AI metadata optional.
-
----
+- **Colors**: Edit `src/assets/css/style.css`
+- **Layout**: Modify templates in `src/_includes/`
+- **Site info**: Update `src/_data/site.json`
 
 ## Next Steps
 
-1. Initialize GitHub repo `monochrome-flow`. (Done)
-2. Scaffold Eleventy site with sample gallery.
-3. Set up Netlify CI/CD.
-4. Write first version of NAS upload → commit script.
-5. Deploy MVP and test end-to-end.
-
----
-
-## Long-term Vision
-
-A living, AI-assisted digital gallery where each portrait is not only displayed but contextualized with styles, moods, and recipes. The site evolves as the photographer’s creative process evolves, blending craft, automation, and curation into one continuous flow.
+1. Copy the configuration files (next artifacts)
+2. Run `npm install`
+3. Add your first portrait + markdown file
+4. Test locally with `npm run dev`
+5. Push to GitHub and deploy via Netlify
