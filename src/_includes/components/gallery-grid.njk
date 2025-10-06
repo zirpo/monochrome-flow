@@ -1,7 +1,9 @@
-<ul class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<ul class="gallery-grid">
   {% for item in items %}
-    <li>
-      <h3>{{ item.data.title }}</h3>
+    <li class="gallery-item">
+      <a href="{{ item.data.src }}" data-title="{{ item.data.title }}" class="gallery-item">
+        {% image item.data.src, item.data.alt, "(min-width: 30em) 50vw, 100vw", item.data.monochrome %}
+      </a>
     </li>
   {% endfor %}
 </ul>

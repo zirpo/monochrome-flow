@@ -3,6 +3,5 @@ layout: "layouts/base.njk"
 title: "Home"
 ---
 
-<pre>{{ collections.portrait | dump | safe }}</pre>
-{% set items = collections.portrait %}
+{% set items = collections.portraits %}
 {% include "components/gallery-grid.njk" %}
