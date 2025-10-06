@@ -2,12 +2,11 @@
 layout: "layouts/base.njk"
 ---
 
-<article>
-    <h1>{{ title }}</h1>
-    <p>Date: {{ date | date("yyyy-MM-dd") }}</p>
-    <p>Mood: {{ mood }}</p>
-    <p>Camera: {{ camera }}</p>
-    <p>Lens: {{ lens }}</p>
-    <img src="/portraits/{{ page.fileSlug }}.jpg" alt="{{ title }}">
-    {{ content | safe }}
-</article>
+<div class="space-y-8">
+  <div class="space-y-2">
+    <h1 class="text-3xl font-bold">{{ title }}</h1>
+    <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+  </div>
+  {# The `or true` provides a default if `monochrome` is not in front matter #}
+  {% image src, alt, "(min-width: 30em) 50vw, 100vw", monochrome %}
+</div>

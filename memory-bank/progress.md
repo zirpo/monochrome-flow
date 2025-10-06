@@ -2,23 +2,24 @@
 
 ## Current Status
 
-The Eleventy project has been successfully set up, including core configurations, templates, and an automated image processing workflow. The first portrait has been integrated and is displaying correctly on the local development server.
+The Eleventy project has been successfully updated to implement site rebranding and selective monochrome image processing as per Change Request ZIRPO-01. All changes have been verified.
 
 ## What Works
 
-*   **Project Setup**: `package.json` is initialized, and core dependencies (Eleventy, Sharp, Luxon) are installed.
-*   **Image Processing**: The `scripts/process-image.js` script correctly resizes, converts to grayscale, and moves images to `src/portraits/`.
-*   **Content Integration**: Markdown files in `src/portraits/` are processed by Eleventy, and their metadata is accessible in templates.
-*   **Eleventy Configuration**: `.eleventy.js` is configured for correct directory structure, asset passthrough, a custom date filter, and the `portraits` collection.
+*   **Project Setup**: `package.json` is initialized, and core dependencies (Eleventy, Sharp, Luxon, @11ty/eleventy-img) are installed.
+*   **Site Rebranding**: Site title and author information are updated across `src/_data/site.json`, `src/_includes/components/header.njk`, and `src/_includes/components/footer.njk`.
+*   **Conditional Image Processing**: The `scripts/process-image.js` no longer forces grayscale. The `.eleventy.js` image shortcode now conditionally applies grayscale based on the `monochrome` front matter variable.
+*   **New Shortcodes/Filters**: The `year` shortcode and `htmlDateString`, `readableDate` filters are added to `.eleventy.js`.
+*   **Content Integration**: Markdown files in `src/portraits/` are processed by Eleventy, and their metadata is accessible in templates. `src/portraits/DSCF1503.md` now includes `monochrome: false` and renders in color.
+*   **Eleventy Configuration**: `.eleventy.js` is configured for correct directory structure, asset passthrough, custom date filters, `year` shortcode, and the `portraits` collection.
 *   **Core Templates**: All essential Nunjucks templates (`base.njk`, `portrait.njk`, `header.njk`, `footer.njk`, `gallery-grid.njk`, `index.njk`) and `site.json` are in place and functioning.
 *   **Local Server**: The `npm start` command successfully runs the Eleventy development server, and the site renders correctly in the browser.
 
 ## What's Left to Build / Next Milestones
 
-1.  **Add More Portraits**: Continue adding more images and their corresponding markdown files to expand the portfolio.
-2.  **Refine Styling**: Enhance the CSS to further improve the visual appeal and responsiveness of the site.
-3.  **Advanced Features**: Explore adding features like lazy loading for images, a contact form, or other enhancements as needed.
-4.  **Deployment**: Prepare the project for continuous deployment to Netlify.
+1.  Continue adding more portraits and their corresponding markdown files.
+2.  Refine styling and add more advanced features as per project brief.
+3.  **Deployment**: Prepare the project for continuous deployment to Netlify.
 
 ## Known Issues
 
@@ -27,5 +28,6 @@ The Eleventy project has been successfully set up, including core configurations
 ## Evolution of Project Decisions
 
 *   The initial plan was refined to include an automated image processing step, which significantly streamlines the content addition workflow.
-*   The implementation of a custom date filter was necessary to resolve Nunjucks rendering errors, highlighting the importance of Eleventy's extensibility.
+*   The implementation of custom date filters and the `year` shortcode was necessary to resolve Nunjucks rendering errors and enhance functionality.
 *   Explicitly defining the `portraits` collection in `.eleventy.js` was crucial for the gallery grid to correctly display content.
+*   The image processing pipeline was adjusted to allow for conditional grayscale, moving the grayscale logic from the initial `process-image.js` script to the Eleventy `image` shortcode.

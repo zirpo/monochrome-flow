@@ -1,4 +1,8 @@
 {
-  "title": "Monochrome Flow",
-  "author": "Cline"
+  "title": "zirpography",
+  "url": "https://zirpography.netlify.app/",
+  "author": {
+    "name": "zirpo",
+    "email": ""
+  }
 }

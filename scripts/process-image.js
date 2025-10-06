@@ -24,7 +24,6 @@ sharp(inputImagePath)
     fit: sharp.fit.inside,
     withoutEnlargement: true,
   })
-  .grayscale()
   .toFile(outputPath)
   .then(() => {
     console.log(`Processed image saved to: ${outputPath}`);

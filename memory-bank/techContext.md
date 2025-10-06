@@ -21,7 +21,7 @@
 
 *   **Static Output**: The project generates static HTML, CSS, and JavaScript files. Dynamic server-side logic is not supported directly within the Eleventy build.
 *   **Markdown for Content**: Portrait content and metadata must adhere to the Markdown with YAML front matter format for Eleventy to process it correctly.
-*   **Image Format**: Images are expected to be JPG and pre-converted to black and white. Recommended size is 2400px on the long edge.
+*   **Image Format**: Images are expected to be JPG. Grayscale conversion is now conditional, controlled by front matter. Recommended size is 2400px on the long edge.
 
 ## Dependencies
 
